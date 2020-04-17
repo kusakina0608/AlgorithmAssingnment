@@ -10,9 +10,9 @@ import java.io.File;
 public class Menu extends JPanel {
     private JLabel ProductName;
     private JLabel Image;
-    private JButton ButtonMinus;
+    public JButton ButtonMinus;
     private JLabel LabelNum;
-    private JButton ButtonPlus;
+    public JButton ButtonPlus;
     private JLabel Price;
     private int num;
     private int price;
@@ -39,7 +39,6 @@ public class Menu extends JPanel {
         ButtonMinus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO("수량 1개 감소 구현")
                 if(num>0) {
                     num--;
                     LabelNum.setText(Integer.toString(num));
@@ -49,35 +48,37 @@ public class Menu extends JPanel {
                 System.out.println("- Button Clicked!!");
             }
         });
-        ButtonMinus.setSize(35, 35);
+        ButtonMinus.setPreferredSize(new Dimension(40, 40));
 
         // + 버튼 생성
         ButtonPlus = new JButton("+");
         ButtonPlus.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO("수량 1개 증가 구현")
                 if(num<20) {
                     num++;
                     LabelNum.setText(Integer.toString(num));
                 }else{
-                    JOptionPane.showMessageDialog(null, "그만.");
+                    JOptionPane.showMessageDialog(null, "그만 먹어.");
                 }
                 System.out.println("+ Button Clicked!!");
             }
         });
-        ButtonPlus.setSize(35, 35);
+        ButtonPlus.setPreferredSize(new Dimension(40, 40));
 
         // 상품명 레이블 생성
         ProductName = new JLabel(name);
+        ProductName.setFont(new Font(ProductName.getFont().getName(), Font.PLAIN, 18));
         ProductName.setHorizontalAlignment(JLabel.CENTER);
 
         // 상품 수량 레이블 생성
         LabelNum = new JLabel(Integer.toString(this.num));
+        LabelNum.setFont(new Font(LabelNum.getFont().getName(), Font.PLAIN, 18));
         LabelNum.setHorizontalAlignment(JLabel.CENTER);
 
         // 상품 가격 레이블 생성
-        Price = new JLabel(Integer.toString(price));
+        Price = new JLabel(Integer.toString(price) + "원");
+        Price.setFont(new Font(Price.getFont().getName(), Font.PLAIN, 18));
         Price.setHorizontalAlignment(JLabel.CENTER);
 
         // 위치 지정
@@ -102,21 +103,21 @@ public class Menu extends JPanel {
         gbc[2].gridy = 7;
         gbc[2].gridwidth = 1;
         gbc[2].gridheight = 1;
-        //gbc[2].fill = GridBagConstraints.BOTH;
+        gbc[2].fill = GridBagConstraints.BOTH;
         // 물품 수량
         gbc[3] = new GridBagConstraints();
         gbc[3].gridx = 1;
         gbc[3].gridy = 7;
         gbc[3].gridwidth = 1;
         gbc[3].gridheight = 1;
-        //gbc[3].fill = GridBagConstraints.BOTH;
+        gbc[3].fill = GridBagConstraints.BOTH;
         // + 버튼
         gbc[4] = new GridBagConstraints();
         gbc[4].gridx = 2;
         gbc[4].gridy = 7;
         gbc[4].gridwidth = 1;
         gbc[4].gridheight = 1;
-        //gbc[4].fill = GridBagConstraints.BOTH;
+        gbc[4].fill = GridBagConstraints.BOTH;
         // 상품 가격
         gbc[5] = new GridBagConstraints();
         gbc[5].gridx = 3;
@@ -131,5 +132,13 @@ public class Menu extends JPanel {
         this.add(LabelNum, gbc[3]);
         this.add(ButtonPlus, gbc[4]);
         this.add(Price, gbc[5]);
+    }
+
+    public int getTotalPrice(){
+        return num*price;
+    }
+    public void ResetSelected(){
+        num = 0;
+        LabelNum.setText(Integer.toString(num));
     }
 }
