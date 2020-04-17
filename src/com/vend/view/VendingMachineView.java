@@ -8,6 +8,8 @@ import java.io.File;
 import java.util.concurrent.Flow;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import com.vend.view.Menu;
 import com.vend.Constant.Const;
 
@@ -56,7 +58,7 @@ public class VendingMachineView implements MouseListener {
         subPanel1 = new JPanel(new GridBagLayout());
         subPanel1.setBackground(Color.WHITE);
         title = new JLabel("상품주문");
-        title.setFont(new Font(title.getFont().getName(), Font.PLAIN, 30));
+        title.setFont(new Font("SansSerif", Font.PLAIN, 30));
         title.setHorizontalAlignment(JLabel.CENTER);
         gbAdd(subPanel1,title, 0, 0, 1, 1, GridBagConstraints.BOTH);
         gbAdd(panel, subPanel1, 0, 0, 1, 1, GridBagConstraints.BOTH);
@@ -75,16 +77,15 @@ public class VendingMachineView implements MouseListener {
         gbAdd(panel, subPanel2, 0, 1, 1, 8, GridBagConstraints.BOTH);
     }
     private void InitSubPanel3(){
-        subPanel3 = new JPanel(new GridBagLayout());
+        subPanel3 = new JPanel(new GridLayout(1, 3));
         subPanel3.setBackground(Color.WHITE);
         TotalPrice = new JLabel("0원");
-        TotalPrice.setFont(new Font(TotalPrice.getFont().getName(), Font.PLAIN, 24));
+        TotalPrice.setFont(new Font("SansSerif", Font.PLAIN, 24));
         TotalPrice.setHorizontalAlignment(JLabel.CENTER);
         buttonCancel = new JButton("취소하기");
         buttonCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO("입력 값 전부 초기화")
                 for(int i=0; i<3; i++){
                     menu[i].ResetSelected();
                 }
@@ -92,18 +93,24 @@ public class VendingMachineView implements MouseListener {
                 System.out.println("Button2 Clicked!!");
             }
         });
+        buttonCancel.setFont(new Font("SansSerif", Font.PLAIN, 21));
         buttonCancel.setPreferredSize(new Dimension(100, 100));
-        gbAdd(subPanel3, TotalPrice, 0, 0, 4, 1, GridBagConstraints.BOTH);
-        gbAdd(subPanel3, buttonCancel, 5, 0, 2, 1, GridBagConstraints.NONE);
+        subPanel3.add(TotalPrice);
+        subPanel3.add(new JLabel(" "));
+        subPanel3.add(buttonCancel);
         gbAdd(panel, subPanel3, 0, 9, 1, 1, GridBagConstraints.BOTH);
     }
     private void InitSubPanel4(){
-        subPanel4 = new JPanel(new GridBagLayout());
+        subPanel4 = new JPanel(new GridLayout(1, 3));
         subPanel4.setBackground(Color.WHITE);
         PaidLabel = new JLabel("지불할 금액");
-        PaidLabel.setFont(new Font(PaidLabel.getFont().getName(), Font.PLAIN, 24));
+        PaidLabel.setFont(new Font("SansSerif", Font.PLAIN, 24));
         PaidLabel.setHorizontalAlignment(JLabel.CENTER);
-        Paid = new JTextField("0");
+        Paid = new JTextField(7){
+            public void setBorder(Border border){ }
+        };
+        Paid.setHorizontalAlignment(JTextField.CENTER);
+        Paid.setFont(new Font("SansSerif", Font.BOLD, 20));
         buttonSubmit = new JButton("구매하기");
         buttonSubmit.addActionListener(new ActionListener() {
             @Override
@@ -112,10 +119,11 @@ public class VendingMachineView implements MouseListener {
                 System.out.println("Button Clicked!!");
             }
         });
+        buttonSubmit.setFont(new Font("SansSerif", Font.PLAIN, 21));
         buttonSubmit.setPreferredSize(new Dimension(100, 100));
-        gbAdd(subPanel4, PaidLabel, 0, 0, 2, 1, GridBagConstraints.BOTH);
-        gbAdd(subPanel4, Paid, 2, 0, 2, 1, GridBagConstraints.BOTH);
-        gbAdd(subPanel4, buttonSubmit, 4, 0, 2, 1, GridBagConstraints.NONE);
+        subPanel4.add(PaidLabel);
+        subPanel4.add(Paid);
+        subPanel4.add(buttonSubmit);
         gbAdd(panel, subPanel4, 0, 10, 1, 1, GridBagConstraints.BOTH);
     }
 
