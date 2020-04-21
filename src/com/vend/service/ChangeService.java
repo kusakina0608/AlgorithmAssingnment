@@ -22,57 +22,34 @@ public class ChangeService {
         scanner.close();
 
         int change;
+
         int all_price = (item_number_1 * ITEM_PRICE_1) + (item_number_2 * ITEM_PRICE_2) + (item_number_3 * ITEM_PRICE_3);
         change = put_money - all_price;
 
-        int n10000 = 0;
-        int n1000 = 0;
-        int n500 = 0;
-        int n150 = 0;
-        int n100 = 0;
-        int n50 = 0;
-        int n10 = 0;
-        int n1 = 0;
+        int coin[10000,1000,500,100,10,1];
+        int count[6];
 
-        while (change >= 10000) {
-            change = change - 10000;
-            n10000++;
-        }
-        while (change >= 1000) {
-            change = change - 1000;
-            n1000++;
-        }
-        while (change >= 500) {
-            change = change - 500;
-            n500++;
-        }
-        while (change >= 150) {
-            change = change - 150;
-            n150++;
-        }
-        while (change >= 100) {
-            change = change - 100;
-            n100++;
-        }
-        while (change >= 50) {
-            change = change - 50;
-            n50++;
-        }
-        while (change >= 1) {
-            change = change - 1;
-            n1++;
+        int coin_num;
+
+        while(true){
+            if(change>0){
+                coin_num++;
+	else if()
+
+
+                    break;}
         }
 
 
-        System.out.println("총금액 : " + all_price);
-        System.out.println("잔돈은 : " + change);
-        System.out.println("잔돈 계산 : 만원 " + n10000 + "장");
-        System.out.println("잔돈 계산 : 천원 " + n1000 + "장");
-        System.out.println("잔돈 계산 : 500원 " + n500 + "개");
-        System.out.println("잔돈 계산 : 150원 " + n150 + "개");
-        System.out.println("잔돈 계산 : 100원 " + n100 + "개");
-        System.out.println("잔돈 계산 : 10원 " + n10 + "개");
-        System.out.println("잔돈 계산 : 1원 " + n1 + "개");
-
+        System.out.println("최소 동전 갯수는"+coin_num +"입니다");
     }
+
+
+
+
 }
+
+
+
+}
+        }
