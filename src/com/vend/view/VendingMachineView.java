@@ -4,15 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
-import java.util.Scanner;
-import java.util.concurrent.Flow;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 
 import com.vend.service.ChangeService;
-import com.vend.view.Menu;
 import com.vend.Constant.Const;
 
 public class VendingMachineView implements MouseListener {
@@ -30,7 +25,7 @@ public class VendingMachineView implements MouseListener {
 
     private JFrame frame;
 
-    private Menu menu[];
+    private Menu[] menu;
 
     private JLabel title;
 
@@ -81,15 +76,12 @@ public class VendingMachineView implements MouseListener {
         TotalPrice.setFont(new Font("SansSerif", Font.PLAIN, 24));
         TotalPrice.setHorizontalAlignment(JLabel.CENTER);
         buttonCancel = new JButton("취소하기");
-        buttonCancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        buttonCancel.addActionListener((ActionEvent e)-> {
                 for(int i=0; i<3; i++){
                     menu[i].ResetSelected();
                 }
                 TotalPrice.setText("0원");
                 System.out.println("Button2 Clicked!!");
-            }
         });
         buttonCancel.setFont(new Font("SansSerif", Font.PLAIN, 21));
         buttonCancel.setPreferredSize(new Dimension(100, 100));
@@ -112,15 +104,16 @@ public class VendingMachineView implements MouseListener {
         Paid.setDocument(id);
         Paid.setFont(new Font("SansSerif", Font.BOLD, 20));
         buttonSubmit = new JButton("구매하기");
-        buttonSubmit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int totalPrice = 0;
-                for(int i=0; i<3; i++){
-                    totalPrice += menu[i].getTotalPrice();
-                }
-                Paid.getText();
-                ChangeService.calcChange(totalPrice, Integer.parseInt(Paid.getText()));
+        buttonSubmit.addActionListener((ActionEvent e) -> {
+            int totalPrice = 0;
+            for(int i=0; i<3; i++){
+                totalPrice += menu[i].getTotalPrice();
+            }
+            int res = ChangeService.calcChange(totalPrice, Integer.parseInt(Paid.getText()));
+            if(res<0){
+                JOptionPane.showMessageDialog(null,"투입금액이 적습니다. 돈을 더 넣어주세요.");
+            }else if(res==0){
+                JOptionPane.showMessageDialog(null,"감사합니다.");
             }
         });
         buttonSubmit.setFont(new Font("SansSerif", Font.PLAIN, 21));
@@ -164,6 +157,7 @@ public class VendingMachineView implements MouseListener {
     public void mouseExited(MouseEvent e)  {
         refreshTotalPrice();
     }
+
     private void refreshTotalPrice(){
         int totalPrice = 0;
         for(int i=0; i<3; i++){

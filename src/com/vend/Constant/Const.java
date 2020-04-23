@@ -13,4 +13,7 @@ public class Const {
 //    public static int[] Coin = {
 //            10000, 5000, 1200, 1000, 500, 100, 10, 1
 //    };
+//    public static int[] Coin = {
+//            10000, 5000, 2600, 1000, 500, 260, 100, 10, 1
+//    };
 }
