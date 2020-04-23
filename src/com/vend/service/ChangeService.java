@@ -4,7 +4,8 @@ import java.util.Scanner;
 import com.vend.Constant.Const;
 
 public class ChangeService {
-    public static int calcChange(int a,int b) {/*
+    public static int calcChange(int a,int b) {
+        /*
         String [] Total_price=a
         int Int_total_price = Integer.parseInt(Total_price[0]);
         int money = Integer.parseInt(b);
