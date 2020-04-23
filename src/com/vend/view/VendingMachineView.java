@@ -30,9 +30,6 @@ public class VendingMachineView implements MouseListener {
 
     private JFrame frame;
 
-    //private JLabel img_1;
-    //private JLabel img_2;
-    //private JLabel img_3;
     private Menu menu[];
 
     private JLabel title;
@@ -55,7 +52,6 @@ public class VendingMachineView implements MouseListener {
         frame.pack();
         frame.setVisible(true);
     }
-
     private void InitSubPanel1(){
         subPanel1 = new JPanel(new GridBagLayout());
         subPanel1.setBackground(Color.WHITE);
@@ -112,14 +108,19 @@ public class VendingMachineView implements MouseListener {
             public void setBorder(Border border){ }
         };
         Paid.setHorizontalAlignment(JTextField.CENTER);
+        IntegerDocument  id = new IntegerDocument (); // 숫자만
+        Paid.setDocument(id);
         Paid.setFont(new Font("SansSerif", Font.BOLD, 20));
         buttonSubmit = new JButton("구매하기");
         buttonSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TotalPrice.getText();
+                int totalPrice = 0;
+                for(int i=0; i<3; i++){
+                    totalPrice += menu[i].getTotalPrice();
+                }
                 Paid.getText();
-                new ChangeService(TotalPrice.getText(),Paid.getText());
+                ChangeService.calcChange(totalPrice, Integer.parseInt(Paid.getText()));
             }
         });
         buttonSubmit.setFont(new Font("SansSerif", Font.PLAIN, 21));
