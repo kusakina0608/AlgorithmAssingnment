@@ -6,6 +6,8 @@
 [1]: https://github.com/kusakina0608/Vending-Machine-Swing/blob/master/Images/
 [2]: 01.png
 
+![Vending Machine Swing preview](https://github.com/kusakina0608/Vending-Machine-Swing/blob/master/Images/01.png)
+
 
 ### Creator
 
