@@ -15,5 +15,3 @@ public class Coin implements Runnable {
         JOptionPane.showMessageDialog(jDialog,money+"원");
     }
 }
-
-

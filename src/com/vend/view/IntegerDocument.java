@@ -1,5 +1,7 @@
 package com.vend.view;
+
 import javax.swing.text.*;
+
 public class IntegerDocument extends PlainDocument {
 
     int currentValue = 0;

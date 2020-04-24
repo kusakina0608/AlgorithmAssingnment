@@ -3,8 +3,6 @@ package com.vend.service;
 import com.vend.Constant.Const;
 import com.vend.view.Coin;
 
-import javax.swing.*;
-
 public class ChangeService{
     public static int calcChange(int totalPrice, int paid) {
         int change = paid - totalPrice;
