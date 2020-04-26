@@ -47,19 +47,25 @@ public class ChangeService{
                     }
                 }
             }
-            /* debug */
-            /*System.out.printf("%5d : ", 0);
-            for(int i=0; i<change+1; i++){
-                System.out.printf("%3d ", i);
-            }
-            System.out.println();
-            for(int i=0; i<num; i++) {
-                System.out.printf("%5d : ", Const.Coin[i]);
-                for (int j=0; j<change+1; j++) {
-                    System.out.printf("%3d ", Changes[i][j]);
+            for(int i=0; i<num; i++){
+                for(int j=0; j<Changes[i][change]; j++){
+                    Coin coin = new Coin(Const.Coin[i]);
+                    Thread thread = new Thread(coin);
+                    thread.start();
                 }
-                System.out.println();
-            }*/
+            }
+//            System.out.printf("%5d : ", 0);
+//            for(int i=0; i<change+1; i++){
+//                System.out.printf("%3d ", i);
+//            }
+//            System.out.println();
+//            for(int i=0; i<num; i++) {
+//                System.out.printf("%5d : ", Const.Coin[i]);
+//                for (int j=0; j<change+1; j++) {
+//                    System.out.printf("%3d ", Changes[i][j]);
+//                }
+//                System.out.println();
+//            }
         }
         return 1;
     }
